@@ -1,0 +1,2 @@
+webcolors==1.8.1
+Pillow==6.0.0
