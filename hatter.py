@@ -51,8 +51,7 @@ class MadAsAHatter:
 
         for file in file_list:
             # Reset the current list each time so it doesn't fill up.
-            global current_list
-            current_list = []
+            self.current_list = []
             img = Image.open(current_directory + file)
             pixel_map = img.load()
             # Now let's traverse the grid to see what data we can glean from it.
@@ -70,7 +69,7 @@ class MadAsAHatter:
             self.traverse_columns(cur_y, row, pixel_map)
             cur_y += self.increment_amount
         # Print out the average values in dictionary format.
-        self.compute_current_average(current_list)
+        self.compute_current_average(self.current_list)
 
     def traverse_columns(self, cur_y, row, pixel_map):
         # Now we're going to traverse horizontally.
@@ -89,7 +88,7 @@ class MadAsAHatter:
 
             # Store rol, col and color name for later parse.
             # Update current list. It will get reset later.
-            current_list.append([row, i, color_name])
+            self.current_list.append([row, i, color_name])
             # Update total list. It will not be reset.
             self.all_values.append([row, i, color_name])
             # Increment the current X coordinate by however much we determined earlier.
