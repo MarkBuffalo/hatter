@@ -52,11 +52,6 @@ python3 hatter.py
 
 This will give you an output like so:
 
-![Output](https://i.imgur.com/XpSB55u.png)
+![Output](https://i.imgur.com/oZS3rDr.png)
 
-...which you're free to analyze using your own data science tomfoolery. Note that I'm aware the output is a dictionary. An earlier iteration of hatter used a list.
-
-# Warning
-
-- If you get anything other than `BLUE`, `PURPLE`, `RED`, `YELLOW`, `GREEN`, send me the values and I'll fix the program. 
-
+...which you're free to analyze using your own data science tomfoolery. 
