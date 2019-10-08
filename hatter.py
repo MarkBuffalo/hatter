@@ -114,8 +114,7 @@ class MadAsAHatter:
             current_tile = (tile_rgb_list[0], tile_rgb_list[1], tile_rgb_list[2])
             color_name = self.closest_tile_color(current_tile)
 
-            print(f"Row: {row+1}. Column: {i+1}. Position: [{cur_x},{cur_y}], RGB: {tile_rgb_list}. "
-                  f"Closest RGB color name: {color_name}")
+            print(f"Tile [{row+1},{i+1}] - [{cur_x},{cur_y}] - Closest color for {tile_rgb_list} is {color_name}")
 
             # Store rol, col and color name for later parse.
             # Update current list. It will get reset later.
