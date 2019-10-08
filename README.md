@@ -22,7 +22,6 @@ mkdir shots
 
 # Additional program requirements
 
-- You must be using an iPhone X, or an emulator which allows you to take screenshots and set your resolution to the iPhone X's standard resolution, or modify the script to handle your resolution.
 - For this to work, you must put all pre-fight raid screenshots in the `/shots/` directory. 
 - Pre-fight means you take a screenshot of the first screen after the raid starts, and before anyone fights. You must not move any tiles.
 - You will need to build up thousands of screenshots to get any meaningful data.
@@ -59,5 +58,4 @@ This will give you an output like so:
 
 # Warning
 
-- This currently only works with iPhone X resolution screenshots. You will need to modify the script for other resolutions.
-- If your resolution differs, you will also have to update the `increment_amount` variable with the amount of spacing between tiles.
+- If you get anything other than `BLUE`, `PURPLE`, `RED`, `YELLOW`, `GREEN`, send me the values and I'll fix the program. 
