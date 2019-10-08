@@ -37,15 +37,10 @@ class MadAsAHatter:
         self.new_distance_y = 0
         self.new_increment_amount = 0
 
-        # Make the terminal output look pretty. Yay!
-        self.red = Fore.LIGHTRED_EX
-        self.green = Fore.LIGHTGREEN_EX
-        self.blue = Fore.LIGHTBLUE_EX
-        self.yellow = Fore.LIGHTYELLOW_EX
-        self.purple = Fore.MAGENTA
+        # This is to make sure the colors don't bleed all over the terminal.
         self.reset = Fore.RESET
 
-        # Our dictionary:tuple of colors.
+        # Our dictionary:tuple of colors. And actual foreground colors.
         self.tile_colors = {
             "red": (255, 0, 0, Fore.LIGHTRED_EX),
             "green": (0, 255, 0, Fore.LIGHTGREEN_EX),
