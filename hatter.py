@@ -1,13 +1,13 @@
-import webcolors
 from PIL import Image
 from collections import Counter
 import os
 from os import listdir
 
+from math import sqrt
+
 
 class MadAsAHatter:
     def __init__(self):
-        # Currently only supports the iPhone X resolution. Tweak for your own settings.
         # The game has 7 columns
         self.columns = 7
         # And 5 rows.
@@ -37,24 +37,12 @@ class MadAsAHatter:
         self.new_distance_y = 0
         self.new_increment_amount = 0
 
-        # Dictionary map of web colors to closest RGBYP value. e.g.: olivedrab = green.
-        self.color_names = {
-            "sandybrown": "yellow",
-            "burlywood": "yellow",
-            "royalblue": "blue",
-            "purple": "purple",  # Shut up! I'm too lazy to write an if statement.
-            "olivedrab": "green",
-            "darkolivegreen": "green",
-            "firebrick": "red",
-            "brown": "red",
-            "darkred": "red",
-            "forestgreen": "green",
-            "goldenrod": "yellow",
-            "indigo": "blue",
-            "darkgreen": "green",
-            "dodgerblue": "blue",
-            "darkred": "red",
-            "darkgoldenrod": "yellow"
+        self.tile_colors = {
+            "red": (255, 0, 0),
+            "green": (0, 255, 0),
+            "blue": (0, 0, 255),
+            "yellow": (255, 255, 0),
+            "purple": (148, 0, 211)
         }
 
         # The current list of each individual screenshot.
@@ -84,6 +72,7 @@ class MadAsAHatter:
         for file in file_list:
             img = Image.open(current_directory + file)
             pixel_map = img.load()
+            print(f"\nChecking {file}...")
 
             # Now, set the size of the screenshot so we can perform insane calculations later.
             self.current_width, self.current_height = img.size
@@ -94,8 +83,11 @@ class MadAsAHatter:
             # Now let's traverse the grid to see what data we can glean from it.
             self.traverse_grid(pixel_map)
         # And then print the final results.
-        print("\nTotal value collection:")
-        print(self.compute_current_average(self.all_values))
+        eq = "=" * 98
+        print(f"\n{eq}\nFinished parsing images!\n{eq}\n\n"
+              f"For these screenshots, your most common colors are as follows:\n")
+        self.compute_current_average(self.all_values)
+        print("\n")
 
     # Find tile data within the grid.
     def traverse_grid(self, pixel_map):
@@ -117,10 +109,9 @@ class MadAsAHatter:
             tile_rgb_list = list(pixel_map[cur_x, cur_y])
             # We're going to get rid of the 'a' value in the rgba result by only combining RED[0], GREEN[1] and BLUE[2].
             current_tile = (tile_rgb_list[0], tile_rgb_list[1], tile_rgb_list[2])
-            color_name = self.closest_color(current_tile)
+            color_name = self.closest_tile_color(current_tile)
 
-            print(f"Row: {row+1}. Column: {i+1}. Position: [{cur_x},{cur_y}]. "
-                  f"Color (rgba): {tile_rgb_list}. "
+            print(f"Row: {row+1}. Column: {i+1}. Position: [{cur_x},{cur_y}], RGB: {tile_rgb_list}. "
                   f"Closest RGB color name: {color_name}")
 
             # Store rol, col and color name for later parse.
@@ -138,9 +129,10 @@ class MadAsAHatter:
             new_list.append(i[2])
 
         sorted_order = self.get_sorted_list(new_list)
+        current_position = 0
         for key, val in sorted_order.items():
-            if key is not None and val is not None:
-                print(f"{key.upper()}: {val} occurrences.")
+            current_position += 1
+            print(f"{current_position}) {key}: {val} occurrences.")
 
     # This is our sorted dictionary. Get average values for each tile on each image parsed.
     @staticmethod
@@ -150,37 +142,25 @@ class MadAsAHatter:
         # e.g.: {'green': 10, 'purple': 8, 'yellow': 8, 'red': 7, 'blue': 2}
         return dict(sorted(counted_list.items(), key=lambda x: x[1], reverse=True))
 
-    # Get nearest web color based on euclidean distance
-    def closest_color(self, requested_color):
-        min_colors = {}
-        for key, name in webcolors.css3_hex_to_names.items():
-            r_c, g_c, b_c = webcolors.hex_to_rgb(key)
-            rd = (r_c - requested_color[0]) ** 2
-            gd = (g_c - requested_color[1]) ** 2
-            bd = (b_c - requested_color[2]) ** 2
-            min_colors[(rd + gd + bd)] = name
-        # Now we're going to convert the nearest web color to the nearest RGBYP value.
-        # e.g.: red, green, blue, yellow, purple.
-        return self.closest_rgb(min_colors[min(min_colors.keys())])
+    def closest_tile_color(self, color):
+        # Unpack Tuple into RGB values
+        red, green, blue = color
+        differences = []
+        # Iterate through tile_colors and compare differences.
+        for color_name, color_tuple in self.tile_colors.items():
+            r, g, b = color_tuple
+            color_difference = sqrt(abs(red - r) ** 2 + abs(green - g) ** 2 + abs(blue - b) ** 2)
+            differences.append((color_difference, color_tuple))
 
-    # Map our current color name to something readable by a 4 year old.
-    def closest_rgb(self, color):
-        for k, v in self.color_names.items():
-            if color is k:
-                return v
-        # It's not mapped. Return color so we can fix it.
-        return color
+        # Unpack differences tuple and get the closest match.
+        r, g, b = min(differences)[1]
 
-    # Get closest web color name
-    def get_color_name(self, requested_color):
-        try:
-            closest_name = actual_name = webcolors.rgb_to_name(requested_color)
-        # An exception was thrown, meaning we couldn't find the right color.
-        except ValueError:
-            # We found an error, so let's conjure euclidean horrors.
-            closest_name = self.closest_color(requested_color)
-            actual_name = None
-        return actual_name, closest_name
+        # Now match the tuples to our tile_colors...
+        for color_name, color_tuple in self.tile_colors.items():
+            nr, ng, nb = color_tuple
+            # Compare the Tuple values and return the color name.
+            if r == nr and g == ng and b == nb:
+                return color_name.upper()
 
 
 if __name__ == "__main__":

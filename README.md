@@ -1,15 +1,15 @@
 # About Hatter.
 
-![Mad Hatter Picture](https://i.imgur.com/ckiRMPN.jpg)
+![Mad Hatter Picture](https://i.imgur.com/AjlFcy1.jpg)
 
-This is **mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
+This project is **Mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
 
-I have used this data to help reach #1 in the world several times in a row.
+I have used this data to help reach #1 in the world more than a dozen times in a row.
 
 # Is this cheating?
 
 - I don't believe  so. You're simply collecting data on what your top colors are so you can maximize your chances of winning through simple statistics. 
-- To prove the point, I reached #1 globally multiple times with the least likely color combinations, meaning the deck was stacked against me the whole way. You still need to know how to play, how to counteract, and you absolutely need good heroes. 
+- To prove the point, I reached #1 globally several times with the least likely color combinations, meaning the deck was stacked against me the whole way. You still need to know how to play, how to counteract, and you absolutely need good heroes. 
 
 # Installation:
 
@@ -22,7 +22,6 @@ mkdir shots
 
 # Additional program requirements
 
-- You must be using an iPhone X, or an emulator which allows you to take screenshots and set your resolution to the iPhone X's standard resolution, or modify the script to handle your resolution.
 - For this to work, you must put all pre-fight raid screenshots in the `/shots/` directory. 
 - Pre-fight means you take a screenshot of the first screen after the raid starts, and before anyone fights. You must not move any tiles.
 - You will need to build up thousands of screenshots to get any meaningful data.
@@ -59,5 +58,5 @@ This will give you an output like so:
 
 # Warning
 
-- This currently only works with iPhone X resolution screenshots. You will need to modify the script for other resolutions.
-- If your resolution differs, you will also have to update the `increment_amount` variable with the amount of spacing between tiles.
+- If you get anything other than `BLUE`, `PURPLE`, `RED`, `YELLOW`, `GREEN`, send me the values and I'll fix the program. 
+
