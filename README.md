@@ -2,7 +2,7 @@
 
 ![Mad Hatter Picture](https://i.imgur.com/AjlFcy1.jpg)
 
-This is **mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
+This project is **Mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
 
 I have used this data to help reach #1 in the world several times in a row.
 
