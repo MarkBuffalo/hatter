@@ -52,6 +52,6 @@ python3 hatter.py
 
 This will give you an output like so:
 
-![Output](https://i.imgur.com/Rb0rQTm.png)
+![Output](https://i.imgur.com/F4ZNsPj.png)
 
 ...which you're free to analyze using your own data science tomfoolery. 
