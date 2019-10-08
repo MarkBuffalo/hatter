@@ -2,7 +2,7 @@ from PIL import Image
 from collections import Counter
 import os
 from os import listdir
-
+from colorama import Fore
 from math import sqrt
 
 
@@ -37,14 +37,22 @@ class MadAsAHatter:
         self.new_distance_y = 0
         self.new_increment_amount = 0
 
-        self.tile_colors = {
-            "red": (255, 0, 0),
-            "green": (0, 255, 0),
-            "blue": (0, 0, 255),
-            "yellow": (255, 255, 0),
-            "purple": (148, 0, 211)
-        }
+        # Make the terminal output look pretty. Yay!
+        self.red = Fore.LIGHTRED_EX
+        self.green = Fore.LIGHTGREEN_EX
+        self.blue = Fore.LIGHTBLUE_EX
+        self.yellow = Fore.LIGHTYELLOW_EX
+        self.purple = Fore.MAGENTA
+        self.reset = Fore.RESET
 
+        # Our dictionary:tuple of colors.
+        self.tile_colors = {
+            "red": (255, 0, 0, Fore.LIGHTRED_EX),
+            "green": (0, 255, 0, Fore.LIGHTGREEN_EX),
+            "blue": (0, 0, 255, Fore.BLUE),
+            "yellow": (255, 255, 0, Fore.LIGHTYELLOW_EX),
+            "purple": (148, 0, 211, Fore.MAGENTA)
+        }
         # The current list of each individual screenshot.
         self.current_list = []
 
@@ -148,19 +156,19 @@ class MadAsAHatter:
         differences = []
         # Iterate through tile_colors and compare differences.
         for color_name, color_tuple in self.tile_colors.items():
-            r, g, b = color_tuple
+            r, g, b, fore = color_tuple
             color_difference = sqrt(abs(red - r) ** 2 + abs(green - g) ** 2 + abs(blue - b) ** 2)
             differences.append((color_difference, color_tuple))
 
         # Unpack differences tuple and get the closest match.
-        r, g, b = min(differences)[1]
+        r, g, b, fore = min(differences)[1]
 
         # Now match the tuples to our tile_colors...
         for color_name, color_tuple in self.tile_colors.items():
-            nr, ng, nb = color_tuple
+            nr, ng, nb, fore = color_tuple
             # Compare the Tuple values and return the color name.
             if r == nr and g == ng and b == nb:
-                return color_name.upper()
+                return f"{fore}{color_name.upper()}{self.reset}"
 
 
 if __name__ == "__main__":
