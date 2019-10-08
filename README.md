@@ -4,7 +4,7 @@
 
 This project is **Mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
 
-I have used this data to help reach #1 in the world several times in a row.
+I have used this data to help reach #1 in the world more than a dozen times in a row.
 
 # Is this cheating?
 
