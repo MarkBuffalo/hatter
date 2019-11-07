@@ -60,14 +60,12 @@ class MadAsAHatter:
         self.new_distance_y = int(round(self.current_height * self.base_distance_y))
         self.new_increment_amount = int(round(self.current_width * (self.base_increment_amount / self.base_width)))
 
-    # For the iPhone X screenshots.
-    # Edit for your own (see start_x and start_y). Good luck because I didn't calculate
-    # the positions based on screenshot size).
+    # Scan each image
     def scan_images(self):
         print(self.base_distance_x)
         print(self.base_distance_y)
         # Take the current directory and append "/shots/". Put all your screenshots in the "/shots/" directory.
-        # Yeah, I could just use argparse, but whatever.
+        # Yeah, I could just use argparse or automatically create the directory, but whatever.
         current_directory = os.path.dirname(os.path.realpath(__file__)) + "/shots/"
         print(current_directory)
         file_list = listdir(current_directory)
