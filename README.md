@@ -4,12 +4,12 @@
 
 This project is **Mad as a Hatter**! It's used for [Empires and Puzzles](https://www.smallgiantgames.com/empires-and-puzzles) game to gather raid data from screenshots. 
 
-I have used this data to help reach #1 in the world more than a dozen times in a row.
+I have used this data to help reach #1 in the world more than a dozen times in a row, but this doesn't *really* help you win. At all. Read on. 
 
 # Is this cheating?
 
 - I don't believe  so. You're simply collecting data on what your top colors are so you can maximize your chances of winning through simple statistics. 
-- To prove the point, I reached #1 globally several times with the least likely color combinations, meaning the deck was stacked against me the whole way. You still need to know how to play, how to counteract, and you absolutely need good heroes. 
+- To prove the point, I reached #1 globally several times with the least likely color combinations, meaning the deck was stacked against me the whole way. You still need to know how to play, how to counteract, and you absolutely need good heroes.  
 
 # Installation:
 
